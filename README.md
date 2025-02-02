@@ -127,10 +127,10 @@ A better approach involves pre-training both models separately before combining 
 
 ## Conclusions
 
-- A multi-modal approach combining audio spectrograms and text metadata significantly improves prediction accuracy over individual models.
-- **Spectrogram down-sampling** helps capture better spatial and time features.
+- A multi-modal approach combining audio spectrograms and text metadata improves prediction accuracy over individual models.
+- **Spectrogram down-sampling** helps capture better spatial and time features then cropping random parts of the spectrogram.
 - **Augmentation on small datasets** improves model accuracy.
 - **Separate pre-training** for large and small datasets is beneficial, especially when dealing with partial and additional information.
-- **Epoch optimization** may require separate training phases to achieve better performance.
+- **Epoch optimization** may require separate training phases for the different models to achieve better performance.
 
 <img src="images/background.png" width="500" alt="Patches covering a down-sampled Spectrogram" />
