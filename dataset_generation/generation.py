@@ -118,10 +118,10 @@ def main():
     """
     Main function to run the script and process Spotify and spectrogram data.
     """
-    # Define file paths
-    spotify_file_path = r"C:\Users\idana\OneDrive - Technion\עידן ועמית- למידה עמוקה\projecton\datasets\spotify\tracks.csv"
-    spectrogram_dir = r"C:\Users\idana\OneDrive - Technion\עידן ועמית- למידה עמוקה\projecton\datasets\spectograms\dataset_down_sampled"
-    output_file = r"C:\Users\idana\OneDrive - Technion\עידן ועמית- למידה עמוקה\projecton\processed_data_regression.pkl"
+    # Define file paths - add your own path here
+    spotify_file_path = r"datasets\spotify\tracks.csv"
+    spectrogram_dir = r"datasets\spectograms\dataset_down_sampled"
+    output_file = r"processed_data_regression.pkl"
 
     # Load Spotify data
     spotify_tracks = load_spotify_data(spotify_file_path)
