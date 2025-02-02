@@ -58,8 +58,8 @@ def main():
     Main function to load Spotify data and save it as a pickle file.
     """
     # Define file paths
-    spotify_file_path = r"C:\Users\amitb\OneDrive - Technion\עידן ועמית- למידה עמוקה\projecton\datasets\spotify\tracks.csv"
-    output_file = r"C:\Users\amitb\OneDrive - Technion\עידן ועמית- למידה עמוקה\projecton\datasets\spotify_data.pkl"
+    spotify_file_path = r"datasets\spotify\tracks.csv"
+    output_file = r"datasets\spotify_data.pkl"
 
     # Load and process Spotify tracks
     spotify_tracks = load_spotify_data(spotify_file_path)
