@@ -2,6 +2,9 @@
 
 This project aims to predict song popularity using a multi-modal approach, combining audio spectrograms processed with Convolutional Neural Networks (CNN) and textual metadata processed using Transformer-based models. 
 
+![Spectrogram Example](images/ColorSpectogram.png) ![Spectrogram Example](images/BlackSpectrogram.png) 
+
+<img src="images/Combined.png" width="500" alt="Patches covering a down-sampled Spectrogram" />
 ## Table of Contents
 
 1. [Overview](#overview)
@@ -50,6 +53,9 @@ The datasets are merged to create a final dataset of ~3,000 samples, while exclu
   - Applying random cover patches to simulate missing portions of the spectrogram.
 
 - **Training Transformer on Larger Textual Data:** The Transformer network is trained on a larger dataset consisting of textual metadata (without spectrograms), which enables it to learn more robust features and improve model performance.
+
+### Example: Patches covering a down-sampled Spectrogram
+<img src="images/SpecWithPatches.png" width="400" alt="Patches covering a down-sampled Spectrogram" />
 
 ## Model Architecture
 
@@ -113,11 +119,11 @@ A better approach involves pre-training both models separately before combining 
 
 ### Naive Approach
 
-![Naive Approach Results](path_to_image)
+![Naive Approach Results](images/Naive_results.png)
 
 ### Better Approach
 
-![Better Approach Results](path_to_image)
+![Better Approach Results](images/Smart_results.png)
 
 ## Conclusions
 
@@ -126,3 +132,5 @@ A better approach involves pre-training both models separately before combining 
 - **Augmentation on small datasets** improves model accuracy.
 - **Separate pre-training** for large and small datasets is beneficial, especially when dealing with partial and additional information.
 - **Epoch optimization** may require separate training phases to achieve better performance.
+
+<img src="images/background.png" width="500" alt="Patches covering a down-sampled Spectrogram" />
