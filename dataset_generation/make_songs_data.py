@@ -2,46 +2,81 @@ import kagglehub
 import pandas as pd
 import os
 import pickle
-from PIL import Image
-from concurrent.futures import ThreadPoolExecutor
 import re
 
+# ----------------------------------------------------------------------------------------------------------------
+# Helper Functions
+# ----------------------------------------------------------------------------------------------------------------
 
 def extract_year(date):
-    """Extracts the year from different date formats"""
+    """
+    Extracts the year from different date formats.
+
+    Args:
+        date (str): The release date (could be in various formats).
+
+    Returns:
+        str: The year extracted from the date string or None if no valid year is found.
+    """
     match = re.search(r'\d{4}', str(date))
     return match.group(0) if match else None
 
+def load_spotify_data(file_path):
+    """
+    Loads and processes Spotify track data from a CSV file.
+
+    Args:
+        file_path (str): The path to the CSV file.
+
+    Returns:
+        pd.DataFrame: Processed DataFrame containing track information.
+    """
+    # Load only the necessary columns
+    spotify_tracks = pd.read_csv(file_path, usecols=['name', 'artists', 'release_date', 'popularity'])
+
+    # Drop duplicates based on name and artist
+    spotify_tracks = spotify_tracks.drop_duplicates(subset=['name', 'artists'], keep='last').reset_index(drop=True)
+
+    # Process 'artists' field to remove extra characters and keep only the first listed artist
+    spotify_tracks['artists'] = spotify_tracks['artists'].apply(
+        lambda a: a.split(",")[0].replace("['", "").replace("']", "").replace("'", "")
+    )
+
+    # Convert release_date to only the year
+    spotify_tracks['release_date'] = spotify_tracks['release_date'].apply(extract_year)
+
+    # Keep popularity as is; can do classification or leave numeric
+    return spotify_tracks
 
 
-# Load Spotify tracks dataset
-file_path = (r"C:\Users\amitb\OneDrive - Technion\עידן ועמית- למידה עמוקה\projecton\datasets\spotify\tracks.csv")
-spotify_tracks = pd.read_csv(file_path, usecols=['name', 'artists', 'release_date', 'popularity'])
+# ----------------------------------------------------------------------------------------------------------------
+# Main Script Logic
+# ----------------------------------------------------------------------------------------------------------------
 
-# Drop duplicates with same name and artist
-spotify_tracks = spotify_tracks.drop_duplicates(subset=['name', 'artists'], keep='last').reset_index(drop=True)
+def main():
+    """
+    Main function to load Spotify data and save it as a pickle file.
+    """
+    # Define file paths
+    spotify_file_path = r"C:\Users\amitb\OneDrive - Technion\עידן ועמית- למידה עמוקה\projecton\datasets\spotify\tracks.csv"
+    output_file = r"C:\Users\amitb\OneDrive - Technion\עידן ועמית- למידה עמוקה\projecton\datasets\spotify_data.pkl"
 
-# Process the 'artists' field
-spotify_tracks['artists'] = spotify_tracks['artists'].apply(lambda a: a.split(",")[0].replace("['", "").replace("']", "").replace("'", ""))
+    # Load and process Spotify tracks
+    spotify_tracks = load_spotify_data(spotify_file_path)
 
-# Ensure release_date is only the year
-spotify_tracks['release_date'] = spotify_tracks['release_date'].apply(extract_year)
+    # Print dataset size for reference
+    print(f"Number of Spotify tracks after cleaning: {len(spotify_tracks)}")
 
-# Apply popularity classification
-spotify_tracks['popularity'] = spotify_tracks['popularity']
+    # Save the final data as a pickle file
+    with open(output_file, 'wb') as f:
+        pickle.dump(spotify_tracks, f)
 
-# Load spectrogram file details
-filename_list = []
-dirname_list = []
-artistname_list = []
-songname_list = []
+    print(f"Dataset saved to {output_file}, containing {len(spotify_tracks)} records.")
 
-print(len(spotify_tracks))
 
-# Save as .pkl file
-output_file = r"C:\Users\amitb\OneDrive - Technion\עידן ועמית- למידה עמוקה\projecton\datasets\spotify_data.pkl"
-with open(output_file, 'wb') as f:
-    pickle.dump(spotify_tracks, f)
+# ----------------------------------------------------------------------------------------------------------------
+# Run the Script
+# ----------------------------------------------------------------------------------------------------------------
 
-print(f"Dataset saved to {output_file}, containing {len(spotify_tracks)} records.")
-
+if __name__ == "__main__":
+    main()
