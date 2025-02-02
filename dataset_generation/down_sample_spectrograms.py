@@ -18,8 +18,8 @@ from kaggle.api.kaggle_api_extended import KaggleApi
 # ----------------------------------------------------------------------------------------------------------------
 
 WORK_MODE = 'Manual'  # Set work mode: 'kaggle' or 'Manual'
-SOURCE_FOLDER = r"C:\Users\idana\Desktop\spectrograms"
-DESTINATION_FOLDER = r"C:\Users\idana\Desktop\down_sampled_spectrograms"
+SOURCE_FOLDER = r"..\spectrograms"
+DESTINATION_FOLDER = r"..\down_sampled_spectrograms"
 DATASET = 'tpapp157/billboard-hot-100-19602020-spectrograms'
 TARGET_DIR = 'dataset_down_sampled'
 KAGGLE_CONFIG_DIR = 'kaggle.json file location'
