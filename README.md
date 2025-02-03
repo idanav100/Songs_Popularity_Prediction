@@ -10,7 +10,7 @@ This project aims to predict song popularity using a multi-modal approach, combi
 
 1. [Overview](#overview)
 2. [Datasets](#datasets)
-3. [Challenges and Solutions](#Challenges and Solutions)
+3. [Challenges and Solutions](#challenges-and-solutions)
 4. [Model Architecture](#model-architecture)
     1. [CNN for Spectrograms](#cnn-for-spectrograms)
     2. [Transformers for Textual Metadata](#transformers-for-textual-metadata)
