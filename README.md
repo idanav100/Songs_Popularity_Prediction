@@ -9,22 +9,46 @@ This project aims to predict song popularity using a multi-modal approach, combi
 ## Table of Contents
 
 1. [Overview](#overview)
-2. [Datasets](#datasets)
-3. [Challenges and Solutions](#challenges-and-solutions)
-4. [Model Architecture](#model-architecture)
+2. [How To Run](#how-to-run)
+3. [Datasets](#datasets)
+4. [Challenges and Solutions](#challenges-and-solutions)
+5. [Model Architecture](#model-architecture)
     1. [CNN for Spectrograms](#cnn-for-spectrograms)
     2. [Transformers for Textual Metadata](#transformers-for-textual-metadata)
     3. [Feature Fusion](#feature-fusion)
-5. [Training Approach](#training-approach)
+6. [Training Approach](#training-approach)
     1. [Naive Approach](#naive-approach)
     2. [Better Approach](#better-approach)
-6. [Training Details](#training-details)
-7. [Preliminary Results](#preliminary-results)
-8. [Conclusions](#conclusions)
+7. [Training Details](#training-details)
+8. [Preliminary Results](#preliminary-results)
+9. [Conclusions](#conclusions)
+
 
 ## Overview
 
 This repository contains the implementation for predicting song popularity using a combination of audio features (spectrograms) and textual metadata. A Convolutional Neural Network (CNN) is used to extract features from audio spectrograms, while a Transformer network processes metadata (artist name, song name, and release year). The two model outputs are then fused for a combined prediction.
+
+## How To Run
+
+### Files Explanation:
+- **`Popularity_Analysis.ipynb`** – Contains the full training process and evaluation. You can modify hyperparameters and load previously trained models.
+- **`Trained_models/`** – Stores pre-trained models, including naive and optimized combined models.
+- **`datasets/`** – Contains a small dataset of 150 samples for testing. The full dataset (~3,000 samples) couldn't be uploaded due to storage limitations.  
+  - Files are in **pickle format (`.pkl`)**, which must be loaded in the notebook's initial cells.
+- **`dataset_generations/`** – Includes scripts for:
+  - **Generating down-sampled spectrograms (~3k samples).**
+  - **Preprocessing the Spotify dataset (~550k samples).**
+  - If needed, you can use the Kaggle API JSON file to fetch datasets.
+
+### Steps to Run:
+1. **Upload the two `.pkl` dataset files** into the notebook.
+   - For convenience, it's recommended to use **Google Drive mounting** in Google Colab.
+2. **Run all notebook cells** to train and evaluate the model.
+
+### Custom Dataset Generation:
+- If you wish to **generate your own dataset** (Spotify metadata processing or different spectrogram down-sampling techniques), use the scripts in **`dataset_generation/`**.
+
+Enjoy! 🚀
 
 ## Datasets
 
